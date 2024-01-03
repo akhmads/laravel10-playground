@@ -13,24 +13,30 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+                <div class="py-6 px-4 lg:px-10 text-gray-900 dark:text-gray-100">
 
-                    <form action="{{ route('snippet.store') }}" method="POST" class="mt-6 space-y-6">
-                        @csrf
-                        <div>
-                            <x-input-label for="name" :value="__('Name')" />
-                            <x-text-input wire:model="name" id="name" name="name" type="text" class="mt-1 block w-full" required autofocus />
-                            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                    <form action="{{ route('snippet.store') }}" method="POST">
+                    <div class="lg:flex items-start justify-between gap-10">
+                        <div class="grow space-y-6">
+                            @csrf
+                            <div>
+                                <x-input-label for="title" :value="__('Title')" />
+                                <x-text-input wire:model="title" id="title" class="mt-1 w-full" required autofocus />
+                                <x-input-error class="mt-2" :messages="$errors->get('title')" />
+                            </div>
+                            {{-- <div>
+                                <x-input-label for="content" :value="__('Content')" />
+                                <x-textarea wire:model="content" id="content" class="mt-1 w-full h-[350px] "></x-textarea>
+                                <x-input-error class="mt-2" :messages="$errors->get('content')" />
+                            </div> --}}
+                            <div id="editorjs"></div>
                         </div>
-                        <div>
-                            <x-input-label for="name" :value="__('Name')" />
-                            <x-text-input wire:model="name" id="name" name="name" type="text" class="mt-1 block w-full" required />
-                            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                        <div class="lg:w-[220px]">
+                            <div class="flex justify-center gap-4">
+                                <x-button type="submit" icon="check" class="w-full">{{ __('Save') }}</x-button>
+                            </div>
                         </div>
-
-                        <div class="flex items-center gap-4">
-                            <x-primary-button>{{ __('Save') }}</x-primary-button>
-                        </div>
+                    </div>
                     </form>
 
                 </div>
