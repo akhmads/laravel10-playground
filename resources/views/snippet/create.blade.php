@@ -16,13 +16,15 @@
                 <div class="py-6 px-4 lg:px-10 text-gray-900 dark:text-gray-100">
 
                     <form action="{{ route('snippet.store') }}" method="POST">
+                    @csrf
                     <div class="lg:flex items-start justify-between gap-10">
                         <div class="grow space-y-6">
-                            @csrf
-                            <div>
-                                <x-input-label for="title" :value="__('Title')" />
-                                <x-text-input wire:model="title" id="title" class="mt-1 w-full" required autofocus />
-                                <x-input-error class="mt-2" :messages="$errors->get('title')" />
+                            <div class="px-10">
+                                <div>
+                                    <x-input-label for="title" :value="__('Title')" />
+                                    <x-text-input name="title" id="title" class="mt-1 w-full" value="{{ old('title') }}" autofocus />
+                                    <x-input-error class="mt-2" :messages="$errors->get('title')" />
+                                </div>
                             </div>
                             {{-- <div>
                                 <x-input-label for="content" :value="__('Content')" />
@@ -30,6 +32,8 @@
                                 <x-input-error class="mt-2" :messages="$errors->get('content')" />
                             </div> --}}
                             <div id="editorjs"></div>
+                            <input type="hidden" name="content" id="editorContent" value="{{ old('content') }}" />
+                            <x-input-error class="mt-2" :messages="$errors->get('content')" />
                         </div>
                         <div class="lg:w-[220px]">
                             <div class="flex justify-center gap-4">

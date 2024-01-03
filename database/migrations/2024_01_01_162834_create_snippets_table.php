@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->index();
-            $table->text('content')->nullable();
+            $table->json('content')->nullable();
             $table->enum('status', ['draft','publish'])->index()->default('draft');
             $table->foreignId('user_id')->index();
             $table->timestamps();

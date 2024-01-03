@@ -19,8 +19,25 @@
                         </ul>
                     </article>
 
+                    <select id="state" name="state" class="w-full"></select>
+
                 </div>
             </div>
         </div>
     </div>
+
+    @push('scripts')
+    <script>
+    $(document).ready(function() {
+        $('#state').select2({
+            placeholder: 'Search state',
+            //minimumInputLength: 1,
+            ajax: {
+                url: '{{ url('api/state') }}',
+                dataType: 'json'
+            }
+        });
+    });
+    </script>
+    @endpush
 </x-app-layout>

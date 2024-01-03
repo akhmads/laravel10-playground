@@ -35,8 +35,8 @@ class SnippetController extends Controller
     public function store(Request $request): Redirect
     {
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
+            'title' => 'required',
+            'content' => 'required',
         ]);
 
         Snippet::create($request->all());
