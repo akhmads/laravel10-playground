@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Livewire\Volt\Volt;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,8 @@ Route::middleware(['auth:web'])->group(function(){
 
         Route::get('/play', [\App\Http\Controllers\PlayController::class,'index'])->name('play');
         Route::resource('snippet', \App\Http\Controllers\SnippetController::class);
+
+        Volt::route('/note', 'note-table')->name('note.index');
 
    //});
 });
