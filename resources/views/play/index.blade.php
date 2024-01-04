@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
                     <article class="prose lg:prose-base">
@@ -19,25 +19,25 @@
                         </ul>
                     </article>
 
-                    <select id="state" name="state" class="w-full"></select>
+                    <form action="{{ route('snippet.store') }}" method="POST" class="space-y-4">
+                    @csrf
+                        <livewire:user-picker value="" label="-- Select --" />
+                        <x-button type="submit" icon="check" class="w-full">{{ __('Save') }}</x-button>
+                    </form>
 
                 </div>
             </div>
         </div>
     </div>
 
-    @push('scripts')
-    <script>
-    $(document).ready(function() {
-        $('#state').select2({
-            placeholder: 'Search state',
-            //minimumInputLength: 1,
-            ajax: {
-                url: '{{ url('api/state') }}',
-                dataType: 'json'
-            }
+@push('scripts')
+<script>
+    document.addEventListener('livewire:init', () => {
+        Livewire.on('user-picked', (data) => {
+            console.log(data);
         });
     });
-    </script>
-    @endpush
+</script>
+@endpush
+
 </x-app-layout>

@@ -19,12 +19,10 @@
                     @csrf
                     <div class="lg:flex items-start justify-between gap-10">
                         <div class="grow space-y-6">
-                            <div class="px-10">
-                                <div>
-                                    <x-input-label for="title" :value="__('Title')" />
-                                    <x-text-input name="title" id="title" class="mt-1 w-full" value="{{ old('title') }}" autofocus />
-                                    <x-input-error class="mt-2" :messages="$errors->get('title')" />
-                                </div>
+                            <div>
+                                <x-input-label for="title" :value="__('Title')" />
+                                <x-text-input name="title" id="title" class="mt-1 w-full" value="{{ old('title') }}" autofocus />
+                                <x-input-error class="mt-2" :messages="$errors->get('title')" />
                             </div>
                             {{-- <div>
                                 <x-input-label for="content" :value="__('Content')" />
