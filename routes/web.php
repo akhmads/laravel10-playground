@@ -27,10 +27,13 @@ Route::view('profile', 'profile')
 Route::middleware(['auth:web'])->group(function(){
     //Route::prefix('/admin')->group(function(){
 
-        Route::get('/play', [\App\Http\Controllers\PlayController::class,'index'])->name('play');
-        Route::resource('snippet', \App\Http\Controllers\SnippetController::class);
+        Route::get('/play',         [\App\Http\Controllers\PlayController::class,'index'])->name('play');
+        Route::resource('snippet',  \App\Http\Controllers\SnippetController::class);
+        Route::resource('note',     \App\Http\Controllers\NoteController::class);
 
-        Volt::route('/note', 'note-table')->name('note.index');
+        Route::get('/test', [\App\Http\Controllers\TestController::class,'index']);
+
+        //Volt::route('/note', 'note-table')->name('note.index');
 
    //});
 });

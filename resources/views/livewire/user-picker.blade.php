@@ -50,19 +50,21 @@ new class extends Component {
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
             </svg>
         </span>
-        <div x-on:click="open =! open" tabindex="0" class="w-full select-none px-3 pr-8 py-2 text-base truncate cursor-pointer border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 focus:outline-indigo-500 rounded-md shadow-sm">
+        <div x-on:click="open =! open" tabindex="0" class="w-full bg-white select-none px-3 pr-8 py-2 text-base truncate cursor-pointer border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 focus:outline-indigo-500 rounded-md shadow-sm">
             {{ empty($label) ? '' : $label }}
         </div>
 
         <div x-cloak x-show="open" @click.outside="open = false" class="absolute top-11 left-0 z-50 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm">
             <input wire:model.live.debounce.500ms="searchKeyword" wire:loading.class="bg-sky-50" tabindex="0" type="text" autofocus placeholder="Search" class="w-full border border-gray-300 focus:border-indigo-400 focus:outline-none py-2 px-2 mb-2 rounded-md shadow-sm">
-            @forelse ( $users as $user )
-            <div wire:key="user-picker-{{ $user->id }}" wire:click="pick('{{ $user->id }}','{{ $user->name }}');$dispatch('close-user-picker');" class="p-1 cursor-pointer hover:bg-blue-50">
-                {{ $user->name }}
+            <div class="max-h-[200px] overflow-y-auto">
+                @forelse ( $users as $user )
+                <div wire:key="user-picker-{{ $user->id }}" wire:click="pick('{{ $user->id }}','{{ $user->name }}');$dispatch('close-user-picker');" class="p-1 cursor-pointer hover:bg-blue-50">
+                    {{ $user->name }}
+                </div>
+                @empty
+                <div class="p-1">No data found.</div>
+                @endforelse
             </div>
-            @empty
-            <div class="p-1">No data found.</div>
-            @endforelse
         </div>
     </div>
 </div>

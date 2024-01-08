@@ -21,8 +21,14 @@
 
                     <form action="{{ route('snippet.store') }}" method="POST" class="space-y-4">
                     @csrf
-                        <livewire:user-picker value="" label="-- Select --" />
-                        <x-button type="submit" icon="check" class="w-full">{{ __('Save') }}</x-button>
+
+                    <div>
+                        <livewire:user-picker value="" id="user_id" label="-- Select --" />
+                        <x-hyco.input-error class="mt-2" for="user_id" />
+                    </div>
+
+                    <x-button type="submit" icon="check" class="w-full">{{ __('Save') }}</x-button>
+
                     </form>
 
                 </div>
