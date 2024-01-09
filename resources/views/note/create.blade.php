@@ -11,7 +11,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-            <form action="{{ route('note.store') }}" method="POST" class="space-y-4">
+            <form action="{{ route('note.store') }}" method="POST" class="space-y-6">
             @csrf
 
             <div>
@@ -25,6 +25,13 @@
                 <livewire:user-picker :value="old('user_id')" label="-- Select --" />
                 <input type="hidden" id="user_id" name="user_id" value="{{ old('user_id') }}">
                 <x-hyco.input-error class="mt-2" for="user_id" />
+            </div>
+
+            <div>
+                <x-hyco.label for="tag" :value="__('Tag')" class="mb-1" />
+                <livewire:tag-picker :value="[]" label="-- Select --" />
+                <input type="hidden" id="tag_id" name="tag_id" value="{{ old('tag_id') }}">
+                <x-hyco.input-error class="mt-2" for="tag_id" />
             </div>
 
             <div class="flex items-center justify-center gap-5">
@@ -41,6 +48,10 @@
     document.addEventListener('livewire:init', () => {
         Livewire.on('user-picked', (data) => {
             document.getElementById('user_id').value = data.id;
+            console.log(data);
+        });
+        Livewire.on('tag-picked', (data) => {
+            document.getElementById('tag_id').value = data.value;
             console.log(data);
         });
     });

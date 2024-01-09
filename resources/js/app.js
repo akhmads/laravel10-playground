@@ -1,5 +1,13 @@
 import "./bootstrap";
+import {
+    Livewire,
+    Alpine,
+} from "../../vendor/livewire/livewire/dist/livewire.esm";
+import Focus from "@alpinejs/focus";
 import EditorJS from "@editorjs/editorjs";
+
+Alpine.plugin(Focus);
+Livewire.start();
 
 if (document.getElementById("editorjs")) {
     const editor = new EditorJS({
@@ -38,7 +46,7 @@ try {
         }
     }
 } catch (reason) {
-    // console.log(`Editor.js initialization failed because of ${reason}`);
+    console.log(`Editor.js initialization failed because of ${reason}`);
 }
 
 function editorChange() {

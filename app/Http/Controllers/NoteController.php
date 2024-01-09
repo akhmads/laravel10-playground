@@ -36,7 +36,7 @@ class NoteController extends Controller
             'user_id' => 'required',
         ]);
 
-        Note::create($request->all());
+        Note::create($request->only(['note','user_id']));
 
         return redirect()
             ->route('note.index')

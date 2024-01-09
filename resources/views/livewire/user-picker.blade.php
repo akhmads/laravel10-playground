@@ -44,7 +44,7 @@ new class extends Component {
 }; ?>
 
 <div>
-    <div x-data="{ open: false }" @close-user-picker="open=false" class="relative z-10">
+    <div x-data="{ open: false }" @close-user-picker="open=false" class="relative">
         <span class="select-none absolute inset-y-0 right-0 flex items-center cursor-pointer pr-3">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
@@ -54,7 +54,7 @@ new class extends Component {
             {{ empty($label) ? '' : $label }}
         </div>
 
-        <div x-cloak x-show="open" @click.outside="open = false" class="absolute top-11 left-0 z-50 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm">
+        <div x-cloak x-show="open" x-trap="open" @click.outside="open = false" class="absolute top-[calc(100%+5px)] left-0 z-50 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm">
             <input wire:model.live.debounce.500ms="searchKeyword" wire:loading.class="bg-sky-50" tabindex="0" type="text" autofocus placeholder="Search" class="w-full border border-gray-300 focus:border-indigo-400 focus:outline-none py-2 px-2 mb-2 rounded-md shadow-sm">
             <div class="max-h-[200px] overflow-y-auto">
                 @forelse ( $users as $user )

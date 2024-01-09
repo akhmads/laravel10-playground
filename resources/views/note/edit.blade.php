@@ -13,7 +13,6 @@
 
             <form action="{{ route('note.update', $note->id) }}" method="POST" class="space-y-4">
             @csrf
-
             <div>
                 <x-hyco.label for="note" :value="__('Note')" class="mb-1" />
                 <x-hyco.textarea id="note" wire:model="note" class="w-full h-[100px]">{{ old('note', $note->note ?? '') }}</x-hyco.textarea>
@@ -41,7 +40,6 @@
     document.addEventListener('livewire:init', () => {
         Livewire.on('user-picked', (data) => {
             document.getElementById('user_id').value = data.id;
-            console.log(data);
         });
     });
 </script>
